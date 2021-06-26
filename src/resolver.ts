@@ -29,7 +29,8 @@ export const resolvers: Resolvers = {
     ticket: (_, args, ctx) => ctx.dataSources.ticketsProvider.getTicket(args),
     tickets: (_, __, ctx) => ctx.dataSources.ticketsProvider.getTickets()
   },
-  Mutation : {
-    updateTicketStatus: (_, args, ctx) => ctx.dataSources.ticketsProvider.updateTicketStatus(args),
+  Mutation: {
+    updateTicketStatus: (_, args, ctx) =>
+      ctx.dataSources.ticketsProvider.updateTicketStatus(args)
   }
 };
