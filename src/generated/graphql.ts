@@ -12,6 +12,17 @@ export type Scalars = {
   Float: number,
 };
 
+export type Mutation = {
+   __typename?: 'Mutation',
+  updateTicketStatus?: Maybe<Ticket>,
+};
+
+
+export type MutationUpdateTicketStatusArgs = {
+  id?: Maybe<Scalars['String']>,
+  status?: Maybe<TicketStatus>
+};
+
 export type Query = {
    __typename?: 'Query',
   ticket?: Maybe<Ticket>,
@@ -111,6 +122,7 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>,
   Ticket: ResolverTypeWrapper<Ticket>,
   TicketStatus: TicketStatus,
+  Mutation: ResolverTypeWrapper<{}>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -120,11 +132,16 @@ export type ResolversParentTypes = {
   String: Scalars['String'],
   Ticket: Ticket,
   TicketStatus: TicketStatus,
+  Mutation: {},
   Boolean: Scalars['Boolean'],
 };
 
+export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  updateTicketStatus?: Resolver<Maybe<ResolversTypes['Ticket']>, ParentType, ContextType, MutationUpdateTicketStatusArgs>,
+};
+
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  ticket?: Resolver<Maybe<ResolversTypes['Ticket'] | undefined>, ParentType, ContextType, RequireFields<QueryTicketArgs, 'id'>>,
+  ticket?: Resolver<Maybe<ResolversTypes['Ticket'] | ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<QueryTicketArgs, 'id'>>,
   tickets?: Resolver<Maybe<Array<Maybe<ResolversTypes['Ticket']>>>, ParentType, ContextType>,
 };
 
@@ -136,6 +153,7 @@ export type TicketResolvers<ContextType = Context, ParentType extends ResolversP
 };
 
 export type Resolvers<ContextType = Context> = {
+  Mutation?: MutationResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   Ticket?: TicketResolvers<ContextType>,
 };

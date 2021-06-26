@@ -18,11 +18,18 @@ export const typeDefs = gql`
     ticket(id: String!): Ticket
     tickets: [Ticket]
   }
+
+  type Mutation {
+    updateTicketStatus(id: String, status: TicketStatus): Ticket
+  }
 `;
 
 export const resolvers: Resolvers = {
   Query: {
     ticket: (_, args, ctx) => ctx.dataSources.ticketsProvider.getTicket(args),
     tickets: (_, __, ctx) => ctx.dataSources.ticketsProvider.getTickets()
+  },
+  Mutation : {
+    updateTicketStatus: (_, args, ctx) => ctx.dataSources.ticketsProvider.updateTicketStatus(args),
   }
 };
