@@ -23,9 +23,6 @@ const server = new ApolloServer({
   dataSources
 });
 
-// Populate db with some dummy data
-ticketsDatabse.populate();
-
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
