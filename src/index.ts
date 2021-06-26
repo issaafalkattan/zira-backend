@@ -2,7 +2,6 @@ import { ApolloServer } from 'apollo-server';
 
 import { TicketsProvider } from './provider';
 import { resolvers, typeDefs } from './resolver';
-import ticketsDatabse from './db';
 
 export interface Context {
   dataSources: {
